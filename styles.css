@@ -1,0 +1,82 @@
+#sidebarLeft {
+background-image: url(./assets/images/corkBoard.jpg);
+border: 2px solid black;
+}
+
+#sidebarRight {
+background-image: url(./assets/images/corkBoard.jpg);
+border: 2px solid black;
+}
+
+#mainContentArea {
+background-image: url(./assets/images/gridPaper.jpg);
+}
+
+#mainTreeImage{
+width: 100%;
+height: auto;
+display: block;
+margin: auto;
+z-index: 50; 
+bottom: 10px;
+cursor: url('./assets/images/ax03.png'), auto;
+}
+
+.sidebarButtonContainer {
+padding-top: 10px;
+padding-bottom: 10px;
+}
+
+.sidebarUpgradeContainer {
+padding-top: 10px;
+padding-bottom: 10px;
+}
+
+.sidebarButtonContainer button { 
+display: block;
+width: 100%;
+padding: 10px;
+margin-bottom: 10px;
+background-image: url(./assets/images/gridPaper2.jpg);
+border-radius: 10px;
+border: 2px solid black;
+font-family: papyrus;
+font-weight: bold;
+color: black;
+}
+
+.moneyEarnedContainer {
+border-radius: 10px;
+}
+
+.moneyEarnedContainer p {
+display: block;
+width: 100%;
+padding: 10px;
+margin-bottom: 10px;
+border-radius: 10px;
+border: 2px solid black;
+background-image: url(./assets/images/gridPaper2.jpg);
+font-family: papyrus;
+font-weight: bold;
+text-align: center;
+color: black;
+}
+
+.sidebarUpgradeContainer h3 {
+display: block;
+width: 100%;
+padding: 10px;
+margin-bottom: 10px;
+background-image: url(./assets/images/gridPaper2.jpg);
+border-radius: 10px;
+border: 2px solid black;
+font-family: papyrus;
+font-weight: bold;
+color: black;
+text-align: center;
+}
+
+.upgradeCards img {
+width: 15%;
+}
