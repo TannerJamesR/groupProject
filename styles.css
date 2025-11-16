@@ -126,7 +126,7 @@ width: 15%;
   padding: 10px;
   margin-bottom: 10px;
   border-radius: 8px;
-  background-image: url(./assets/images/gridPaper2.jpg);
+  background: #e9d6ad;
   border: 1px solid #7ea17e; 
   cursor: pointer;
   transition: 0.2s;
@@ -140,4 +140,5 @@ width: 15%;
   background: #9d9d9d;
   cursor: not-allowed;
 }
+
 
