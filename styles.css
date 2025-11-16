@@ -20,7 +20,47 @@ margin: auto;
 z-index: 50; 
 bottom: 10px;
 cursor: url('./assets/images/ax03.png'), auto;
+transition: transform 0.1s ease;
 }
+
+.treeShake{
+animation: shake 0.15s;
+}
+
+@keyframes shake {
+0% { transform: rotate(0deg) scale(1); }
+25% { transform: rotate(-1deg) scale(0.995); }
+50% { transform: rotate(1deg) scale(0.995); }
+75% { transform: rotate(-0.5deg) scale(0.998); }
+100% { transform: rotate(0deg) scale(1); }
+}
+
+#mainContentArea {
+  position: relative; /* important for correct particle placement */
+}
+
+.particle {
+position: absolute;
+width: 8px;
+height: 8px;
+background-color: #493114; /* wood-chip color */
+border-radius: 2px;
+pointer-events: none;
+opacity: 1;
+animation: particleAnimation 0.4s ease-out forwards;
+}
+
+@keyframes particleAnimation {
+0% {
+transform: translate(0, 0) scale(1);
+opacity: 1;
+}
+100% {
+transform: translate(var(--dx), var(--dy)) scale(0.3);
+opacity: 0;
+}
+}
+
 
 .sidebarButtonContainer {
 padding-top: 10px;
@@ -79,4 +119,24 @@ text-align: center;
 
 .upgradeCards img {
 width: 15%;
+}
+
+.upgrade {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  background: #e9d6ad;
+  border: 1px solid #7ea17e;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.upgrade:hover {
+  background: #bcd3bc;
+}
+
+.upgrade:disabled {
+  background: #9d9d9d;
+  cursor: not-allowed;
 }
