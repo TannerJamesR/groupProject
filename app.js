@@ -1,6 +1,9 @@
 let moneyCount = 0;
 let clickPower = 1;
 let logsPerSecond = 0;
+const treeChoppingSound = document.getElementById("treeChoppingSound"); 
+const toggleMuteBtn = document.getElementById("toggleMuteBtn");
+let isMuted = false;
 
 // Cache DOM elements
 const tree = document.getElementById("mainTreeImage");
@@ -9,6 +12,48 @@ const upgradeButtons = document.querySelectorAll(".upgrade");
 
 // Track purchases for each upgrade
 const upgradePurchases = Array(upgradeButtons.length).fill(0);
+
+const openSettingsBtn = document.getElementById("openSettingsModal");
+const closeSettingsBtn = document.getElementById("closeSettingsModal");
+const settingsModal = document.getElementById("settingsModal");
+
+openSettingsBtn.addEventListener("click", () => {
+    settingsModal.classList.add("open");
+});
+
+closeSettingsBtn.addEventListener("click", () => {
+    settingsModal.classList.remove("open");
+});
+
+const openAboutBtn = document.getElementById("openAboutModal");
+const closeAboutBtn = document.getElementById("closeAboutModal");
+const aboutModal = document.getElementById("aboutModal");
+
+openAboutBtn.addEventListener("click", () => {
+    aboutModal.classList.add("open");
+});
+
+closeAboutBtn.addEventListener("click", () => {
+    aboutModal.classList.remove("open");
+});
+
+const openHowToPlayBtn = document.getElementById("openHowToPlayModal");
+const closeHowToPlayBtn = document.getElementById("closeHowToPlayModal");
+const howToPlayModal = document.getElementById("howToPlayModal");
+
+openHowToPlayBtn.addEventListener("click", () => {
+    howToPlayModal.classList.add("open");
+});
+
+closeHowToPlayBtn.addEventListener("click", () => {
+    howToPlayModal.classList.remove("open");
+});
+
+toggleMuteBtn.addEventListener("click", () => {
+    isMuted = !isMuted; 
+    treeChoppingSound.muted = isMuted;
+    toggleMuteBtn.textContent = isMuted ? "Unmute" : "Mute";
+});
 
 // Initialize UI
 moneyTracker.textContent = moneyCount;
@@ -98,3 +143,4 @@ function spawnParticles(e) {
         setTimeout(() => particle.remove(), 400);
     }
 }
+
