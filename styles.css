@@ -141,4 +141,115 @@ width: 15%;
   cursor: not-allowed;
 }
 
+.settingsModal {
+  background-color: rgba(0,0,0,0.5);
+  opacity: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition: all 0.3s ease-in-out;
+  z-index: -1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.settingsModal.open {
+    opacity: 1;
+    z-index: 999;
+}
+
+.modal-inner {
+  background-image: url(./assets/images/corkBoard.jpg);
+  border-radius: 10px;
+  padding: 15px 25px;
+  text-align: center;
+  border: 2px solid black;
+  width: 500px;
+  font-family: papyrus;
+  font-weight: bold;
+  color: black;
+}
+
+.modal-inner h2 {
+  background-image: url(./assets/images/gridPaper2.jpg);
+  padding: 10px;
+  border-radius: 10px;
+  border: 2px solid black;
+  font-family: papyrus;
+  font-weight: bold;
+  color: black;
+  text-align: center;
+}
+
+.modal-inner p {
+  background-image: url(./assets/images/gridPaper2.jpg);
+  padding: 10px;
+  border-radius: 10px;
+  border: 2px solid black;
+  font-family: papyrus;
+  font-weight: bold;
+  color: black;
+  text-align: center;
+}
+
+.modal-inner button {
+  display: block;
+  margin-bottom: 10px;
+  background-image: url(./assets/images/gridPaper2.jpg);
+  padding: 10px;
+  border-radius: 10px;
+  border: 2px solid black;
+  font-family: papyrus;
+  font-weight: bold;
+  color: black;
+  text-align: center;
+  width: 100%;
+}
+
+.aboutModal {
+  background-color: rgba(0,0,0,0.5);
+  opacity: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition: all 0.3s ease-in-out;
+  z-index: -1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.aboutModal.open {
+    opacity: 1;
+    z-index: 999;
+}
+
+.howToPlayModal {
+  background-color: rgba(0,0,0,0.5);
+  opacity: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition: all 0.3s ease-in-out;
+  z-index: -1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.howToPlayModal.open {
+    opacity: 1;
+    z-index: 999;
+}
+
 
