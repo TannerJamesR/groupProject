@@ -55,28 +55,28 @@ toggleMuteBtn.addEventListener("click", () => {
     toggleMuteBtn.textContent = isMuted ? "Unmute" : "Mute";
 });
 
-// Initialize UI
+//Initialize UI
 moneyTracker.textContent = moneyCount;
 
-// --- Click the tree ---
+//Click the tree
 tree.addEventListener("click", (e) => {
     moneyCount += clickPower;
     moneyTracker.textContent = moneyCount;
 
-    // Optional shake animation if you have it
+    //Optional shake animation
     tree.classList.add("treeShake");
     setTimeout(() => tree.classList.remove("treeShake"), 150);
 
     spawnParticles(e);
 });
 
-// --- Passive income ---
+//Passive income
 setInterval(() => {
     moneyCount += logsPerSecond;
     moneyTracker.textContent = moneyCount;
 }, 1000);
 
-// --- Upgrade buttons logic ---
+//Upgrade buttons logic
 upgradeButtons.forEach((button, index) => {
     button.addEventListener("click", () => {
         let cost = parseInt(button.getAttribute("data-cost"));
@@ -86,25 +86,25 @@ upgradeButtons.forEach((button, index) => {
         if (moneyCount >= cost) {
             moneyCount -= cost;
 
-            // Apply upgrade
+            //Apply upgrade
             if (type === "click") {
                 clickPower += value;
             } else if (type === "lps") {
                 logsPerSecond += value;
             }
 
-            // Increment purchase count
+            //Increment purchase count
             upgradePurchases[index]++;
             button.textContent = `${button.textContent.split(' — ')[0]} — Level: ${upgradePurchases[index]} — Cost: ${cost} logs`;
 
-            // Optionally scale cost for next purchase (e.g., 15% increase)
+            //Optionally scale cost for next purchase (e.g., 15% increase)
             const newCost = Math.floor(cost * 1.15);
             button.setAttribute("data-cost", newCost);
 
-            // Update tracker
+            //Update tracker
             moneyTracker.textContent = moneyCount;
         } else {
-            // Optional feedback if not enough logs
+            //Optional feedback if not enough logs
             button.style.backgroundColor = "#b33a3a";
             setTimeout(() => button.style.backgroundColor = "", 200);
         }
@@ -123,11 +123,11 @@ function spawnParticles(e) {
         const particle = document.createElement("div");
         particle.classList.add("particle");
 
-        // Position at click point
+        //Position at click point
         particle.style.left = `${x}px`;
         particle.style.top = `${y}px`;
 
-        // Random movement direction
+        //Random movement direction
         const angle = Math.random() * Math.PI * 2;
         const distance = 30 + Math.random() * 20;
 
@@ -139,7 +139,7 @@ function spawnParticles(e) {
 
         tree.parentElement.appendChild(particle);
 
-        // Remove after animation
+        //Remove after animation
         setTimeout(() => particle.remove(), 400);
     }
 }
