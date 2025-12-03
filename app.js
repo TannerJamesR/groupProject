@@ -5,6 +5,9 @@ const treeChoppingSound = document.getElementById("treeChoppingSound");
 const toggleMuteBtn = document.getElementById("toggleMuteBtn");
 let isMuted = false;
 
+// Persistance key
+const STORAGE_KEY = 'groupTen_save_v1';
+
 // Cache DOM elements
 const tree = document.getElementById("mainTreeImage");
 const moneyTracker = document.getElementById("moneyTracker");
@@ -53,11 +56,12 @@ toggleMuteBtn.addEventListener("click", () => {
     isMuted = !isMuted; 
     treeChoppingSound.muted = isMuted;
     toggleMuteBtn.textContent = isMuted ? "Unmute" : "Mute";
+    saveState();
 });
 
 //Initialize UI
 moneyTracker.textContent = moneyCount;
-
+loadState();
 //Click the tree
 tree.addEventListener("click", (e) => {
     moneyCount += clickPower;
@@ -68,12 +72,14 @@ tree.addEventListener("click", (e) => {
     setTimeout(() => tree.classList.remove("treeShake"), 150);
 
     spawnParticles(e);
+    saveState();
 });
 
 //Passive income
 setInterval(() => {
     moneyCount += logsPerSecond;
     moneyTracker.textContent = moneyCount;
+    saveState();
 }, 1000);
 
 //Upgrade buttons logic
@@ -103,6 +109,7 @@ upgradeButtons.forEach((button, index) => {
 
             //Update tracker
             moneyTracker.textContent = moneyCount;
+            saveState();
         } else {
             //Optional feedback if not enough logs
             button.style.backgroundColor = "#b33a3a";
@@ -143,4 +150,54 @@ function spawnParticles(e) {
         setTimeout(() => particle.remove(), 400);
     }
 }
+
+
+function saveState() {
+    try {
+        const state = {
+            moneyCount,
+            clickPower,
+            logsPerSecond,
+            upgradePurchases,
+            isMuted
+        };
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    } catch (err) {
+        console.warn('Could not save state to localStorage', err);
+    }
+}
+
+function loadState() {
+    try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) return;
+        const state = JSON.parse(raw);
+        if (typeof state.moneyCount === 'number') moneyCount = state.moneyCount;
+        if (typeof state.clickPower === 'number') clickPower = state.clickPower;
+        if (typeof state.logsPerSecond === 'number') logsPerSecond = state.logsPerSecond;
+        if (Array.isArray(state.upgradePurchases)) {
+            // copy into existing array (keeps same length)
+            state.upgradePurchases.forEach((val, i) => {
+                if (typeof val === 'number') upgradePurchases[i] = val;
+                const button = upgradeButtons[i];
+                if (button) {
+                    button.textContent = `${button.textContent.split(' — ')[0]} — Level: ${upgradePurchases[i]} — Cost: ${button.getAttribute('data-cost')} logs`;
+                }
+            });
+        }
+        if (typeof state.isMuted === 'boolean') {
+            isMuted = state.isMuted;
+            treeChoppingSound.muted = isMuted;
+            toggleMuteBtn.textContent = isMuted ? 'Unmute' : 'Mute';
+        }
+        moneyTracker.textContent = moneyCount;
+    } catch (err) {
+        console.warn('Could not load state from localStorage', err);
+    }
+}
+
+// Save before unload
+window.addEventListener('beforeunload', saveState);
+
+
 
